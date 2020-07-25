@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load my_filter %}{% load static %}
+{% block body_block %}
+{% if user.is_superuser %}{% csrf_token %}{% endif%}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="row">
+    <div class="col border-top border-secondary pt-5 text-secondary">
+        <div class="row">
+            <div class="col mr-2 headfont">
+                <p class=" text-right "> Średnia ocen: <span id="avarage">{{ avarage }}</span> /5 <i class="fa fa-star checked"></i></p>
+            </div>
+
+        </div>
+        <p class="headfont"></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+     <div class=" col col-md-8 comment-widgets">
+                <!-- Comment Row -->
+             <!-- Comment Row -->
+
+         <!-- Card -->
+        {% autoescape off %}
+        {% for opinion in comments %}
+
+             <div {% if user.is_superuser %} aria-label="{{ opinion.id }}" {% endif %} class="d-flex flex-row hide comment-row m-t-0  border-top border-light">
+                    <div class="comment-text w-100">
+                        <h6 class="font-medium">{{opinion.FirstName}} {{opinion.LastName}} <span class="float-right">{{opinion.Rate|stars}}</span></h6> <span class="m-b-15 d-block">{{opinion.Text}}</span>
+                        <div class="comment-footer"> <span class="text-muted float-right">{{opinion.pub_date.day}} {{opinion.pub_date | date:'F'}} {{opinion.pub_date.year}}</span> {% if user.is_superuser %}<button type="button" value = "{{opinion.id}}" class="btn btn-danger btn-sm deleteOpinion">Delete</button>{% endif%}</div>
+                    </div>
+                </div>
+        {% endfor %}
+        {% endautoescape %}
+         </div>
+
+    <div class="col-md-2"></div>
+</div>
+{% if comments|length > 2 %}
+<div class="row">
+    <div class="col bg-light text-secondary text-center showMore">
+        Pokaż więcej...
+    </div>
+</div>
+{% endif %}
+<div class="row border-top border-secondary pt-3">
+    <div class="col-2"></div>
+    <div class="col-8  text-center ">
+            <span class="headfont text-secondary ">
+        Zostaw swoją opinię:
+    </span></br>
+        <div class="row">
+            <div class="col">
+                <form id="addOpinionForm"class="mt-3" method="post" action="{% url 'app:addopinion' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-3 col-6">
+                            <input class="form-control mt-2" id="FirstName" placeholder="Imię" name="FirstName" type="text" required>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <input class="form-control mt-2" id = "LastName" placeholder="Nazwisko" name="LastName" type="text" required>
+                        </div>
+                        <div class="col-md-6 col  text-secondary star-size">
+                            <div class="rating" >
+            <input id="star5" name="Rate" type="radio" value="5" class="radio-btn hide" />
+            <label for="star5" title="<span style='color:lightgreen'>Bardzo dobrze</span>"  ><i class="fa fa-star "></i></label>
+            <input id="star4" name="Rate" type="radio" value="4" class="radio-btn hide" />
+            <label for="star4" title="<span style='color:green'>Dobrze</span>" > <i class="fa fa-star "></i></label>
+            <input id="star3" name="Rate" type="radio" value="3" class="radio-btn hide" />
+            <label for="star3" title="<span style='color:yellow'>Może być</span>"><i class="fa fa-star "></i></label>
+            <input id="star2" name="Rate" type="radio" value="2" class="radio-btn hide" />
+            <label for="star2"title="<span style='color:red'>Źle</span>" ><i class="fa fa-star "></i></label>
+            <input id="star1" name="Rate" type="radio" value="1" class="radio-btn hide" />
+            <label for="star1" title="<span style='color:red'>Bardzo źle</span>"><i class="fa fa-star "></i></label>
+            <div class="clear"></div>
+        </div>
+                    </div>
+                        </div>
+
+                    <div class="row mt-4 mb-4">
+                        <div class="col">
+                            <textarea id = "Text" class="form-control textarea-no-resize" placeholder="Komentarz (opcjonalne)" rows = "4" name="Text"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" id="submitRate" class="btn btn-success btn-md float-right mb-3">Zostaw opinię</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-2"></div>
+</div>
+{% if user.is_superuser %}
+<script src="{% static 'js/admin.js' %}"></script>
+{% endif %}
+
+
+{% endblock %}

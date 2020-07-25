@@ -1,0 +1,103 @@
+{% extends 'base.html' %}{% load static %}
+{% block body_block %}
+
+<div id = "XDD" class="row">
+    <div class="col fixed-bg min-height-1">
+        <div class="slide-left headfont-2 text-left text-white mt-3 ml-5"><p>Bram Hart</p>
+            <p class="headfont text-center"> Tutaj będzie tekst</p></div>
+    </div>
+
+</div>
+<div class="row bg-light h400 ">
+    <div class="col-2  border-secondary">
+
+    </div>
+    <div class="col  border-secondary slide-left">
+        <p class="headfont text-center text-info mt-3 pt-3 "> Jesteśmy na rynku od 26 kwietnia 2019 </p>
+        <p class=" text-center text-info mt-3 pt-3 "> Od tego czasu udało nam się: </p>
+        <div class=" font row text-info border-bottom border-secondary">
+            <div class="col text-center slide-left">
+                <p>Ogrodzić</p>
+                <p>
+                    <i class="pe-7s-home pe-2x"> </i> <br class="hidden-ss"><span class="count" data-from="0" data-to="{{dane.fences}}"
+                                                            data-speed="5000"></span>
+                </p>
+            </div>
+            <div class="col text-center slide-left">
+                <p>Wykonać</p>
+                <p>
+                    <i class="pe-7s-tools pe-2x"> </i> <br class="hidden-ss"><span class="count" data-from="0" data-to="{{dane.construction}}"
+                                                             data-speed="5000"></span>
+                </p>
+            </div>
+            <div class="col text-center slide-left">
+                <p>Zadowolić</p>
+                <p>
+                    <i class="pe-7s-users pe-2x"> </i> <br class="hidden-ss"><span class="count" data-from="0" data-to="{{dane.people}}"
+                                                             data-speed="5000"></span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center text-secondary mt-5 headfont "><p>Nasza firma oferuje usługi z zakresu</p></div>
+        </div>
+    </div>
+    <div class="col-2">
+    </div>
+</div>
+<div class="row h600 text-secondary">
+    <div class="col">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+          <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active carousel-item-overflow">
+            <img class="first-slide w-100" src="{% static 'images/1.jpg' %}" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption text-left top-addres-font">
+                <p class="headfont">Another example headline.</p>
+                <p>Za długo</p>
+                <p><a class="btn btn-sm btn-primary" href="#" role="button">Więcej...</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item carousel-item-overflow">
+            <img class="second-slide w-100" src="{% static 'images/2.jpg' %}" alt="Second slide">
+            <div class="container">
+              <div class="carousel-caption headfont">
+                  <p class="headfont">Another example headline.</p>
+                <p>Za długo</p>
+                <p><a class="btn btn-sm btn-primary" href="#" role="button">Więcej...</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item carousel-item-overflow">
+            <img class="third-slide w-100" src="{% static 'images/3.jpg' %}" alt="Third slide">
+            <div class="container">
+              <div class="carousel-caption text-right headfont">
+                <p class="headfont">Another example headline.</p>
+                <p>Za długo</p>
+                <p><a class="btn btn-sm btn-primary" href="#" role="button">Więcej...</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+        </div>
+</div>
+
+
+<hr class="bg-secondary" style="height:1px;"/>
+
+{% endblock %}

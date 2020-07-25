@@ -1,0 +1,145 @@
+{% extends 'base.html' %}{% load static %}
+{% block body_block %}
+<div class="row bg-info">
+    <div class="container">
+        <div class="col text-light pt-5">
+            <span class="text-center font-weight-lighter headfont-2 mb-5">O nas</span>
+            </br>
+            <span class="text-center mt-5 mb-3">
+            <h3>Na rynku jesteśmy od 26 kwietnia 2019<h3>
+        </span>
+            <p class=" text-center text-light mt-3 pt-3 "> Od tego czasu udało nam się: </p>
+            <div class=" font row text-light border-bottom border-light">
+                <div class="col text-center slide-left">
+                    <p style="font-size:2vmin;">Ogrodzić</p>
+                    <p>
+                        <i class="pe-7s-home pe-2x"> </i> <br><span class="count" data-from="0"
+                                                                                      data-to="{{dane.construction}}"
+                                                                                      data-speed="5000"></span>
+                    </p>
+                </div>
+                <div class="col text-center slide-left">
+                    <p style="font-size:2vmin;">Wykonać</p>
+                    <p>
+                        <i class="pe-7s-tools pe-2x"> </i> <br><span class="count" data-from="0"
+                                                                                       data-to="{{dane.fences}}"
+                                                                                       data-speed="5000"></span>
+                    </p>
+                </div>
+                <div class="col text-center slide-left">
+                    <p style="font-size:2vmin;">Zadowolić</p>
+                    <p>
+                        <i class="pe-7s-users pe-2x"> </i> <br><span class="count" data-from="0"
+                                                                                       data-to="{{dane.people}}"
+                                                                                       data-speed="5000"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col font-weight-lighter" style="font-size: 2.8vmin;">
+                    Firma <strong>BramHart</strong> specjalizuje się w produkcji nowoczesnych
+                    ogrodzeń oraz indywidualnych pomysłów stalowych konstrukcji, np. mebli ogrodowych.
+                    <br>Nasze ogrodzenia wyróżniają się solidnym wykonaniem.
+                    Z wielką precyzją i zaangażowaniem podchodzimy do każdego zlecenia. Dając przęsła do ocynkownia
+                    wszystkie otwory wiercimy tak, by były ukryte i niewidoczne.
+                    Piaskowanie, cynkowanie, malowanie proszkowe.
+                    Cena do uzgodnienia.
+                    Pomiar i wycena gratis. Krótkie terminy realizacji.
+
+                    Siedziba naszej firmy znajduje się w woj. Podkarpackim położonej w odległości 45 kilometrów od
+                    Rzeszowa.</h5>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="arrow-up mx-auto">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-light text-secondary ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 py-2"><img height="200px" class="rounded-circle  border border-black"
+                                                    width="200px"
+                                                    src="https://theitservice.co.uk/wp-content/uploads/2017/01/Blank-person-273x300.jpg">
+                    </div>
+                    <div class="col-md-8 pt-5"><span class=" font-weight-lighter font-italic">"Stawiam na jakość, a nie na ilość, by sprostać wysokim wymaganiom klienta. Bowiem z doświadczenia
+                    wiem, że zadowolony klient to najlepsza reklama."</span><span class=" font-weight-light"> - Krzysztof Kiełbiki, <strong>właściciel BramHart</strong></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row bg-info text-light pt-5 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center"><h3>Informacje kontaktowe</h3></div>
+                </div>
+                <div class="row text-center mt-3">
+                    <div class="col col-md-4">
+                        <div class="row">
+                            <div class="col">
+                                <h1>
+                                    <i class=" px-2 py-2 rounded-circle  bg-info-light pe-7s-call pe-2x"> </i>
+                                </h1>
+                            </div>
+
+                        </div>
+                         <div class="row">
+                            <div class="col">Telefon
+                            </div>
+                        </div><div class="row">
+                            <div class="col">{{kontakt.telefon}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-md-4">
+                        <div class="row">
+                            <div class="col">
+                                <h1>
+                                    <i class=" px-2 py-2 rounded-circle  bg-info-light pe-7s-map-marker pe-2x"> </i>
+                                </h1>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">Adres
+                            </div>
+                        </div><div class="row">
+                            <div class="col">{{kontakt.adres}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-md-4">
+                        <div class="row">
+                            <div class="col">
+                                <h1>
+                                    <i class=" px-2 py-2 rounded-circle  bg-info-light pe-7s-mail pe-2x"> </i>
+                                </h1>
+                            </div>
+
+                        </div>
+                         <div class="row">
+                            <div class="col">
+                                e-mail
+                            </div>
+                        </div><div class="row">
+                            <div class="col">
+                                {{kontakt.email}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1278.933621562507!2d22.451777246462616!3d50.1262061206694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473c9517c169e395%3A0xa62dc9e7cc7c2c9c!2sZmys%C5%82%C3%B3wka%20112%2C%2037-306%20Laszczyny!5e0!3m2!1spl!2spl!4v1595165225854!5m2!1spl!2spl"
+                width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                tabindex="0"></iframe>
+        </div>
+        {% endblock %}

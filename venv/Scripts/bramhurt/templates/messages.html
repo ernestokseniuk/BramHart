@@ -1,0 +1,62 @@
+{% extends 'base.html' %}{% load static %}
+{% block body_block %}
+{% csrf_token %}
+<div class="alert alert-success" role="alert">
+  Udało się
+</div>
+        <script src="{% static 'js/admin.js' %}"></script>
+<div class="row">
+<div class="col text-center border-bottom border-secondary">
+    <h2>Wiadomości</h2>
+</br>
+    <h6 class=" float-left"><a href="{%url 'app:admin'%}">Wróć do panelu</a></h6>
+</div>
+</div>
+<div class="row " style="min-height:60vh;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="accordion" id="accordionExample">
+                    {% for message in messages %}
+                        <div class="row">
+                            <div class="col">
+                        <div class="card-header" id="heading{{message.id}}">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse"
+                                        data-target="#collapse{{message.id}}" aria-expanded="false"
+                                        aria-controls="collapse{{message.id}}">
+                                    {% if message.opened == False %}
+                                    <b aria-valuenow="{{message.id}}" >
+
+
+                                        {% endif %}
+                                        {{ message.author }} | {{message.email}} | {{ message.phone }} | {{ message.pub_date }}
+                                        {% if message.opened == False %}
+                                    </b>
+
+
+                                    {% endif %}
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapse{{message.id}}" class="collapse" aria-labelledby="heading{{message.id}}"
+                             data-parent="#accordionExample">
+                            <div class="card-body">
+                                {{ message.text }}
+                            </br>
+                                <button class="deleteMessage mt-2 btn btn-success" value="{{message.id}}">Usuń</button>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

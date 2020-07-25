@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %} ">
+    <link rel="stylesheet" href="{% static 'pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}">
+    <link rel="stylesheet" href="{% static 'pe-icon-7-stroke/css/helper.css' %}">
+        <script src="{% static 'js/jquery.countTo.js' %}"></script>
+
+    <title>{{title}}</title>
+</head>
+<body>
+<div class="container-fluid" style="min-height:100vh;">
+    <div class="row p-2 bg-light text-secondary">
+        <div class="col-1"></div>
+        <div class="col top-contact-font" ><span class="mr-3"> <span class="mediafont">m</span> {{kontakt.telefon}}</span>
+            <span class="mr-3"><span class="mediafont">k</span> {{kontakt.email}} </span>
+            <span class="mr-3"><span class="mediafont">o</span> {{kontakt.adres}} </span>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light mt-3">
+        <a class="navbar-brand navMargin" href="{% url 'app:index' %}" style="width:10%;">
+            <img class = "toWhite" src="{% static 'images/logo_bh.png' %}" style="height:10vh;width:10vh;" alt="LOGO">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" style=" font-size:1.3vmax; ">
+                <li class="nav-item ml-3">
+                    <a class="nav-link" href="{% url 'app:index' %} ">Start </span></a>
+                </li>
+                <li class="nav-item dropdown ml-3">
+                    <a class="nav-link toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                       aria-expanded="false">Galeria</a>
+                    <div class="dropdown-menu">
+                        {% for i in kategorie %}
+                        <a class="dropdown-item" href="{% url 'app:galleryDet' i.name %}">{{i.name}}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="nav-item ml-3">
+                    <a class="nav-link" href="{% url 'app:AboutUs' %} ">O nas </span></a>
+                </li>
+                <li class="nav-item ml-3">
+                    <a class="nav-link" href="{% url 'app:opinions' %} ">opinie </span></a>
+                </li>
+                <li class="nav-item ml-3">
+                    <a class="nav-link" href="{% url 'app:contact' %} ">Kontakt </span></a>
+                </li>
+                <hr/>
+            </ul>
+
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    {% block body_block %}
+    {% endblock %}
+    <div class="footter row text-secondary bg-light pt-3">
+        <div class="col  col-md-4 text-justify font-weight-light text-center  pt-4">Jeśli zainteresowały Państwa ogrodzenia</br>
+            oferowane przez naszą firmę,</br>  zapraszamy
+            do kontaktu.
+        </div>
+        <div class="col col-md-4"></br>KONTAKT:</br><span class="mr-3">
+            <i class="pe-7s-call"></i> {{kontakt.telefon}}</span></br>
+            <span class="mr-3"><i class="pe-7s-mail"></i> {{kontakt.email}} </span></br>
+            <span class="mr-3"><i class="pe-7s-map-marker"></i> {{kontakt.adres}} </span></br></div>
+        <div class="col col-md-4"><span>Nawigacja:</span>
+            <ul>
+                <li>
+                    <a class="text-secondary" href="#">Start</a>
+                </li>
+                <li>
+                    <a class="text-secondary" href="#">Galeria</a>
+                </li>
+                <li>
+                    <a class="text-secondary" href="#">O nas</a>
+                </li>
+                <li>
+                    <a class="text-secondary" href="#">Opinie</a>
+                </li>
+                <li>
+                    <a class="text-secondary" href="#">Kontakt</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>        <script src="{% static 'js/javascript.js' %}"></script>
+</body>
+</html>

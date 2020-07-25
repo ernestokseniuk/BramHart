@@ -1,0 +1,93 @@
+{% extends 'base.html' %}{% load static %}
+{% block body_block %}
+<div id = "submitMessage" class="row">
+<div id = "successMessage" class="alert alert-success alert-dismissible fade w-100" role="alert">
+  <strong>Sukces!</strong> Twoja wiadomość została wysłana.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    <div id = "failedMessage" class="alert alert-danger alert-dismissible fade w-100" role="alert">
+  <strong>Niepowodzenie!</strong> Coś poszło nie tak, spróbuj ponownie.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+
+<div class="row">
+    <div class="col col-md-4 ">
+        <div class="row mt-2">
+            <div class="col">
+                <h3 class="text-center"> Kontakt:</h3>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col pl-5">
+                Nazwa:<br>
+                <p class="w-75 border-bottom border-secondary"><i class="pe-7s-home mr-3"></i>{{kontakt.brandName}}</p>
+            </div>
+
+        </div>
+        <div class="row mt-2">
+            <div class="col pl-5">
+                Numer telefonu:<br>
+                <p class="w-75 border-bottom border-secondary"><i class="pe-7s-call mr-3"></i>{{kontakt.telefon}}</p>
+            </div>
+
+        </div>
+        <div class="row mt-2">
+            <div class="col pl-5">
+                E-mail:<br>
+                <p class="w-75 border-bottom border-secondary"><i class="pe-7s-mail mr-3"></i> {{kontakt.email}}</p>
+            </div>
+
+        </div>
+        <div class="row mt-2 mb-3">
+            <div class="col pl-5">
+                Adres:<br>
+                <p class="w-75 border-bottom border-secondary"><i class="pe-7s-map-marker mr-3"></i>{{kontakt.adres}}
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <div class="col col-md-8 bg-light px-5">
+        <div class="row mt-2">
+            <div class="col">
+                <h3 class="text-center">Formularz kontaktowy:</h3>
+            </div>
+        </div>
+        <form id = "newMessageForm" class="px-5" action="{% url 'app:send-message' %}">
+            <div class="form-row">
+                {% csrf_token %}
+                <div class="form-group col-md-4">
+                     <label for="inputEmail4">Imię i Naziwsko / Firma:</label>
+      <input type="text" class="form-control" name="author" placeholder="Imię, nazwisko / firma" required>
+                </div><div class="form-group col-md-4">
+                      <label for="inputEmail4">Telefon:</label>
+      <input type="tel" class="form-control" name="phone" placeholder="Numer telefonu" required>
+                </div><div class="form-group col-md-4">
+                      <label for="inputEmail4">E-mail:</label>
+      <input type="email" class="form-control" name="email" placeholder="Adres e-mail" required>
+                </div>
+            </div>
+
+                    <div class="row mt-4 mb-4">
+                        <div class="col">
+                            <textarea name="text" class="form-control textarea-no-resize" placeholder="Treść" rows = "4" name="Text" required></textarea>
+                        </div>
+                    </div>
+            <div class="row">
+
+            </div>
+            <button id = "sendMessage" type="button" class="btn btn-success mt-n2 mb-3 w-25">Wyślij</button>
+        </form>
+        </div>
+</div>
+<div class="row">
+    <iframe class="w-100"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1278.933621562507!2d22.451777246462616!3d50.1262061206694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473c9517c169e395%3A0xa62dc9e7cc7c2c9c!2sZmys%C5%82%C3%B3wka%20112%2C%2037-306%20Laszczyny!5e0!3m2!1spl!2spl!4v1595165225854!5m2!1spl!2spl"
+            height="450" frameborder="0" style="border:0;" allowfullscreen="false" aria-hidden="false" tabindex="0"></iframe>
+</div>
+{% endblock %}

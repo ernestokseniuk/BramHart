@@ -1,0 +1,284 @@
+{% extends 'base.html' %}{% load static %}
+{% block body_block %}
+        <script src="{% static 'js/admin.js' %}"></script>
+<div class="row">
+    <div class="container">
+        <div class="row border-bottom border-secondary">
+            <div class="col text-right">
+                <span ><a href="{% url 'app:admin-messages' %}">Poczta: {% if messagescount > 0 %}<span class="text-danger"> nowe {{ messagescount }}!</span>{% else %} Brak nowych wiadomości {%endif%}</a></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Dane o firmie
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                             data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form id = "updateBrand" action="{% url 'app:update-brand-data' %}">
+                                    {% csrf_token %}
+                                    <label for="telefon">Telefon: </label>
+                                    <input type="text" name="telefon" value="{{kontakt.telefon}}" class="form-control">
+                                    <label for="email">E-mail: </label>
+                                    <input type="text" class="form-control" name="email" value="{{kontakt.email}}">
+                                    <label for="adres">Adres: </label>
+                                    <input type="text" name="adres" class="form-control" value="{{kontakt.adres}}">
+                                    <label for="brandName">Nazwa firmy: </label>
+                                    <input type="text" name="brandName" class="form-control"
+                                           value="{{kontakt.brandName}}">
+                                    <input type="button" id="saveBrandDate" class="btn mt-2 btn-success" value="Zapisz">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                    Zarządzanie galerią
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                             data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link btn-block text-left" type="button"
+                                                        data-toggle="collapse"
+                                                        data-target="#collapseFour" aria-expanded="true"
+                                                        aria-controls="collapseFour">
+                                                    Dodanie głównej kategorii
+                                                </button>
+                                            </h2>
+                                        </div>
+
+                                        <div id="collapseFour" class="collapse show" aria-labelledby="headingFour"
+                                             data-parent="#collapseTwo">
+                                            <div class="card-body">
+                                                <form id="newMainCategoryForm" action="{% url 'app:add-MainCategory' %}">
+                                                    {% csrf_token %}
+                                                    <label for="name">Nazwa kategorii:</label>
+                                                    <input type="text" class="form-control" name="name" required>
+                                                    <label for="image">Obraz kategorii:</label>
+                                                    <input type="file" class="form-control-file" name="image" required>
+                                                    <input class="btn btn-success mt-2" type="button" value="Zapisz"
+                                                           id="saveMainCategory">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingTwo">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseFive"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapseFive">
+                                                    Dodanie podkategorii
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseFive" class="collapse" aria-labelledby="headingSix"
+                                             data-parent="#collapseTwo">
+                                            <div class="card-body">
+                                                <form id="newCategoryForm" action="{% url 'app:add-Category' %}">
+                                                    {% csrf_token %}
+                                                    <label for="category">Nazwa kategorii do której ma zostać dodana
+                                                        podkategoria</label>
+                                                    <select id = "id_category" name="category" class="form-control">
+                                                        {% for kategoria in kategorie %}
+                                                        <option value="{{kategoria.id}}">{{kategoria.name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <label for="name">Nazwa kategorii:</label>
+                                                    <input type="text" class="form-control" name="name" required>
+                                                    <label for="image">Obraz kategorii:</label>
+                                                    <input type="file" class="form-control-file" name="image" required>
+                                                    <input class="btn btn-success mt-2" type="button" value="Zapisz"
+                                                           id="saveCategory">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingSix">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseSix"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapseSix">
+                                                    Dodanie obiektu do podkategorii
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                                             data-parent="#collapseTwo">
+                                            <div class="card-body">
+                                                <form id="newObjectForm" action="{% url 'app:add-Object' %}">
+                                                    {% csrf_token %}
+                                                    <label for="category">Nazwa kategorii:</label>
+                                                    <select id="id_category" name="category" class="form-control">
+                                                        {% for kategoria in kategorie %}
+                                                        <optgroup label="{{kategoria.name}}">
+                                                            {% for podkategoria in podkategorie %}
+                                                            {% if podkategoria.category == kategoria %}
+                                                            <option value="{{podkategoria.id}}">{{podkategoria.name}}
+                                                            </option>
+                                                            {% endif %}
+                                                            {% endfor %}
+                                                        </optgroup>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <label for="name">Nazwa kategorii:</label>
+                                                    <input type="text" class="form-control" name="name" required>
+                                                    <label for="image">Obraz kategorii:</label>
+                                                    <input type="file" class="form-control-file" name="image" required>
+                                                    <input class="btn btn-success mt-2" type="button" value="Zapisz"
+                                                           id="saveObject">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingSeven">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link btn-block text-left" type="button"
+                                                        data-toggle="collapse"
+                                                        data-target="#collapseSeven" aria-expanded="true"
+                                                        aria-controls="collapseSeven">
+                                                    Usuwanie głównej kategorii
+                                                </button>
+                                            </h2>
+                                        </div>
+
+                                        <div id="collapseSeven" class="collapse" aria-labelledby="headingFour"
+                                             data-parent="#collapseTwo">
+                                            <div class="card-body">
+                                                <form id="deleteMainCategoryForm" action="{% url 'app:deleteMainCategory'%}">
+                                                    {% csrf_token %}
+                                                    <label for="category">Wybierz którą kategorie chcesz usunąś</label>
+                                                    <select class="form-control" name="category">
+                                                        {% for kategoria in kategorie %}
+                                                        <option value="{{kategoria.id}}">{{kategoria.name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <input class="btn btn-success mt-2" type="button" value="Usuń"
+                                                           id="deleteMainCategory">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link btn-block text-left" type="button"
+                                                        data-toggle="collapse"
+                                                        data-target="#collapseEight" aria-expanded="true"
+                                                        aria-controls="collapseEight">
+                                                    Usuwanie podkategorii
+                                                </button>
+                                            </h2>
+                                        </div>
+
+                                        <div id="collapseEight" class="collapse" aria-labelledby="headingFour"
+                                             data-parent="#collapseTwo">
+                                            <div class="card-body">
+                                                <form id="deleteCategoryForm" action="{% url 'app:deleteCategory'%}">
+                                                    {% csrf_token %}
+                                                    <label for="category">
+                                                        Wybierz którą podkategorię chcesz usunąć
+                                                    </label>
+                                                     <select name="category" class="form-control">
+                                                        {% for kategoria in kategorie %}
+                                                        <optgroup label="{{kategoria.name}}">
+                                                            {% for podkategoria in podkategorie %}
+                                                            {% if podkategoria.category == kategoria %}
+                                                            <option value="{{podkategoria.id}}">{{podkategoria.name}}
+                                                            </option>
+                                                            {% endif %}
+                                                            {% endfor %}
+                                                        </optgroup>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <input class="btn btn-success mt-2" type="button" value="Delete"
+                                                           id="deleteCategory">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingNine">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link btn-block text-left" type="button"
+                                                        data-toggle="collapse"
+                                                        data-target="#collapseNine" aria-expanded="true"
+                                                        aria-controls="collapseNine">
+                                                    Usuń zdjęcie
+                                                </button>
+                                            </h2>
+                                        </div>
+
+                                        <div id="collapseNine" class="collapse" aria-labelledby="headingNine"
+                                             data-parent="#collapseTwo">
+                                            <div class="card-body">
+                                                <form id="deleteObjectForm" action="{% url 'app:deleteObject'%}">
+                                                    {% csrf_token %}
+                                                    <label for="id">Podaj ID zdjęcia które chcesz usunąć (Prawy przycisk myszy, zbadaj element, atrybut value)</label>
+                                                   <input  class="form-control" name="id" type="number">
+                                                    <input type="button" id = "deleteObject" value="Usuń" class="btn btn-success mt-2">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                    data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
+                                Statystki (Ilość ogrodzeń/konstrukccji/zadowolonych kilenów)
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                         data-parent="#accordionExample">
+
+                        <div class="card-body">
+                            <form id = "updateStatistic" action="{% url 'app:update-statistic-data' %}">
+                                {% csrf_token %}
+                                <label for="constructions">Ilość wykonanych konstrukcji</label>
+                                <input name="construction" value="{{dane.construction}}" class="form-control"
+                                       type="number">
+                                <label for="fences">Ilość wykonanych ogrodzeń</label>
+                                <input name="fences" value="{{dane.fences}}" class="form-control" type="number">
+                                <label for="people">Ilość zadowolonych kilentów</label>
+                                <input name="people" value="{{dane.people}}" class="form-control" type="number">
+                                <input type="button" id="saveStatistic" value="Zapisz" class="btn btn-success mt-2">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

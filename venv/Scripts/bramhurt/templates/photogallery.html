@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+<div class="row">
+      <div id="lb-back">
+      <div id="lb-img"></div>
+         </div>
+</div>
+
+
+<div class="row border-top border-bottom border-muted  text-secondary  bg-light bg-image-class" style="background-image: linear-gradient(to bottom, rgba(30, 30, 30, 0.5), rgba(0, 0, 0, 2)), url( {{parentCategory.image.url}}); color: white !important;">
+    <div class="container">
+        <div class="row pt-2 pb-2 ">
+        <div class="col-6 text-leftmt-1"><h2>Galeria</h2></div>
+            <div class="col-6 text-right mt-3">{% autoescape off %}{{ breadcrumb }}{% endautoescape %}</div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="row" style="min-height:60vh;">
+
+<div class="container">
+   <div class="row  mt-5">
+       {% for item in items %}
+            <div class="col-xd col-md-4 col-sm-6 img-hover-zoom mt-2 px-3" style="max-height: 35vh  !important;">
+                <img class="zoomD " value ="{{ item.id }}" src="{{item.image.url}}"/>
+            </div>
+       {% endfor %}
+   </div>
+</div>
+</div>
+{% endblock %}
