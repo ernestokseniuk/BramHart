@@ -121,7 +121,7 @@ def aboutUs(request):
     else:
         contact = contact[0]
     kategorie = MainCategory.objects.all()
-    return render(request,"aboutus.html",{"dane":dane,"kontakt":contact})
+    return render(request,"aboutus.html",{"dane":dane,"kontakt":contact,"kategorie":kategorie})
 def contact(request):
     contact = Contact.objects.all()
     if len(contact) == 0:

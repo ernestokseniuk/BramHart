@@ -25,7 +25,7 @@
    <div class="row  mt-5">
        {% for item in items %}
             <div class="col-xd col-md-4 col-sm-6 img-hover-zoom mt-2 px-3" style="max-height: 35vh  !important;">
-                <img class="zoomD " value ="{{ item.id }}" src="{{item.image.url}}"/>
+                <img class="zoomD " value ="{{ item.id }}" src="/media/{{ MEDIA_URL }}{{ item.image }} "/>
             </div>
        {% endfor %}
    </div>
